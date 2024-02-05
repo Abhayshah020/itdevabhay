@@ -29,6 +29,14 @@ const Image = styled.img`
       border-radius: 20% 50% 30% 50%;
     }
   }
+  @media screen and (max-width: 750px) {
+    width: 100px;
+    height: 100px;
+  }
+  @media screen and (max-width: 450px) {
+    width: 80px;
+    height: 80px;
+  }
 `;
 
 const Hero = () => {
@@ -43,27 +51,44 @@ const Hero = () => {
         </div>
 
         <div>
-          <div  style={{ display: "flex", alignItems: "center", gap: "30px" , flexFlow:'wrap'}}>
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: "30px",
+              flexFlow: "wrap",
+            }}
+          >
             <Image src={image} alt="" />
-
-          <h1 className={`${styles.heroHeadText} text-white`}>
-            Hi, I'm <span className="text-[#915EFF]">Abhay Shah</span>
-          </h1>
+            <motion.h1
+              initial={{ opacity: 0, y: -30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, ease: "easeInOut" }}
+              className={`${styles.heroHeadText} text-white`}
+            >
+              Hi, I'm <span className="text-[#915EFF]">Abhay Shah</span>
+            </motion.h1>
           </div>
-          <p className={`${styles.heroSubText} mt-2 tesxt-white-100`}>
-            I develop <span className="text-[#915EFF]">AI chatbots, user interfaces, and web applications</span>
+          <motion.p
+            initial={{ opacity: 0, x: -100 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5, ease: "easeInOut" }}
+            className={`${styles.heroSubText} mt-2 tesxt-white-100`}
+          >
+            I develop{" "}
+            <span className="text-[#915EFF]">
+              AI chatbots, user interfaces, and web applications
+            </span>
+            <br className="sm:block hidden" />
+            Create friendly conversational interfaces and
+            <br className="sm:block hidden" />
+            scale businesses online.
             <br className="sm:block hidden" />
             <br className="sm:block hidden" />
-
-            Create friendly conversational interfaces and<br className="sm:block hidden" />
-             scale businesses online.
-            <br className="sm:block hidden" /><br className="sm:block hidden" />
-             Let's build your digital success together!
-          </p>
+            Let's build your digital success together!
+          </motion.p>
         </div>
       </div>
-
-      {/* <ComputersCanvas /> */}
 
       <div className="absolute xs:bottom-10 bottom-32 w-full flex justify-center items-center">
         <a href="#about">
