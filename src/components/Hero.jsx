@@ -61,18 +61,18 @@ const Hero = () => {
           >
             <Image src={image} alt="" />
             <motion.h1
-              initial={{ opacity: 0, y: -30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, ease: "easeInOut" }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.9, ease: "easeInOut" }}
               className={`${styles.heroHeadText} text-white`}
             >
               Hi, I'm <span className="text-[#915EFF]">Abhay Shah</span>
             </motion.h1>
           </div>
           <motion.p
-            initial={{ opacity: 0, x: -100 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5, ease: "easeInOut" }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1}}
+            transition={{ duration: 0.9, ease: "easeInOut" }}
             className={`${styles.heroSubText} mt-2 tesxt-white-100`}
           >
             I develop{" "}
