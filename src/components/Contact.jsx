@@ -67,6 +67,7 @@ const Contact = () => {
             to_name: "JavaScript Mastery",
             from_email: form.email,
             to_email: "abhayshah020@gmail.com",
+            instagram: form?.instagram || '',
             message: form.message,
           },
           import.meta.env.VITE_APP_EMAILJS_PUBLIC_KEY
@@ -99,12 +100,12 @@ const Contact = () => {
         );
     } else {
       notification.info({
-        message: "Please the Required * Form Field Before Sending Contact Info!",
+        message:
+          "Please the Required * Form Field Before Sending Contact Info!",
         // description: "Ahh, something went wrong. Please try again.",
         duration: 2,
       });
       setLoading(false);
-
     }
   };
 
