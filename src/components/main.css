@@ -99,4 +99,16 @@
     transform: translateX(0);
   }
 }
+#header_title {
+  animation: opacityManuver 0.9s ease-in;
+}
+
+@keyframes opacityManuver {
+  from {
+    opacity: 0;
+  }
+  to {
+     opacity: 1;
+  }
+}
 

@@ -11,6 +11,7 @@ import {
   StarsCanvas,
 } from "./components";
 import { useInView } from "react-intersection-observer";
+import "./index.css";
 
 const LazyLoadedComponent = ({ children }) => {
   const [ref, inView] = useInView({
@@ -21,16 +22,20 @@ const LazyLoadedComponent = ({ children }) => {
   return <div ref={ref}>{inView && children}</div>;
 };
 
-const SuspenseFallback = () => <div>Loading...</div>;
+const SuspenseFallback = () => (
+  <div className="loading-container">
+    <div className="background"></div>
+    <div className="spinner"></div>
+  </div>
+);
 const App = () => {
   return (
     <BrowserRouter>
       <Suspense fallback={<SuspenseFallback />}>
-        <div className="relative z-0 bg-primary">
+        <div className="relative z-0 bg-primary" style={{ overflow: "hidden" }}>
           <div className="bg-hero-pattern bg-cover bg-no-repeat bg-center">
             <Navbar />
             <Hero />
-            <StarsCanvas />
           </div>
           <LazyLoadedComponent>
             <About />
@@ -44,11 +49,14 @@ const App = () => {
           <LazyLoadedComponent>
             <Works />
           </LazyLoadedComponent>
+          <LazyLoadedComponent>
+            <StarsCanvas />
+          </LazyLoadedComponent>
+
           <div className="relative z-0">
             <LazyLoadedComponent>
               <Contact />
             </LazyLoadedComponent>
-            <StarsCanvas />
           </div>
         </div>
       </Suspense>

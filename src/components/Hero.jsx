@@ -4,7 +4,6 @@ import { styles } from "../styles";
 import image from "../assets/itdevabhay.jpg";
 import LazyLoadedImage from "./LazyLoadImage";
 
-
 const Hero = () => {
   return (
     <section className={`relative w-full h-[100vh] mx-auto`}>
@@ -30,19 +29,15 @@ const Hero = () => {
               alt=""
               cssClass={"mian_hero_image_css"}
             />
-            <motion.h1
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.9, ease: "easeInOut" }}
+            <h1
+              id="header_title"
               className={`${styles.heroHeadText} text-white`}
             >
               Hi, I'm <span className="text-[#915EFF]">Abhay Shah</span>
-            </motion.h1>
+            </h1>
           </div>
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.9, ease: "easeInOut" }}
+          <p
+            id="header_title"
             className={`${styles.heroSubText} mt-2 tesxt-white-100`}
           >
             I develop{" "}
@@ -56,7 +51,7 @@ const Hero = () => {
             <br className="sm:block hidden" />
             <br className="sm:block hidden" />
             Let's build your digital success together!
-          </motion.p>
+          </p>
         </div>
       </div>
 

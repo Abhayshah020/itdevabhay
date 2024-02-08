@@ -1,7 +1,6 @@
 import React, { useRef, useState } from "react";
 import { motion } from "framer-motion";
 import emailjs from "@emailjs/browser";
-import { notification } from "antd";
 import { styles } from "../styles";
 import { SectionWrapper } from "../hoc";
 import { slideIn } from "../utils/motion";
@@ -159,7 +158,7 @@ const Contact = () => {
               name="instagram"
               value={form.instagram}
               onChange={handleChange}
-              placeholder="What is your Instagram Id? We will DM you on Your Instagram as soon as possible!"
+              placeholder="What is your Instagram Handle? We will DM you on Your Instagram as soon as possible!"
               className="bg-tertiary py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none border-none font-medium"
             />
           </label>

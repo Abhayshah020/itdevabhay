@@ -202,3 +202,44 @@
       -2.6em 0em 0 0em rgba(255, 255, 255, 0.7), -1.8em -1.8em 0 0em #ffffff;
   }
 }
+
+.loading-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* background-image: url('./assets/400loaderbackground.png'); Add your background image */
+  background-size: cover;
+  backdrop-filter: blur(18px); /* Add blur effect */
+  opacity: 0.7; /* Adjust opacity as needed */
+}
+
+.spinner {
+  border: 4px solid rgba(255, 255, 255, 0.3); /* Adjust color and opacity */
+  border-top: 4px solid #ffffff; /* Adjust color */
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
