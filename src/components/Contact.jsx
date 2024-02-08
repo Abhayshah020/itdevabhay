@@ -3,38 +3,20 @@ import { motion } from "framer-motion";
 import emailjs from "@emailjs/browser";
 import { notification } from "antd";
 import { styles } from "../styles";
-import { EarthCanvas } from "./canvas";
 import { SectionWrapper } from "../hoc";
 import { slideIn } from "../utils/motion";
 import insta_image from "../assets/instagram.png";
-import styled from "styled-components";
-
-const Image = styled.img`
-  border-radius: 20% 50% 30% 50%;
-  width: 40px;
-  height: 40px;
-  animation: identifier 7s linear infinite;
-
-  @keyframes identifier {
-    0% {
-      border-radius: 20% 50% 30% 50%;
-    }
-    25% {
-      border-radius: 70% 30% 60% 40%;
-    }
-    50% {
-      border-radius: 30% 70% 50% 70%;
-    }
-    75% {
-      border-radius: 50% 30% 70% 30%;
-    }
-    100% {
-      border-radius: 20% 50% 30% 50%;
-    }
-  }
-`;
+import LazyLoadedImage from "./LazyLoadImage";
+import "./main.css";
+import { Notification } from "./Notification";
 const Contact = () => {
   const formRef = useRef();
+  const [notificationState, setNotificationState] = useState({
+    title: "",
+    message: "",
+    status: false,
+  });
+  console.log(notificationState)
   const [form, setForm] = useState({
     name: "",
     instagram: "",
@@ -67,7 +49,7 @@ const Contact = () => {
             to_name: "JavaScript Mastery",
             from_email: form.email,
             to_email: "abhayshah020@gmail.com",
-            instagram: form?.instagram || '',
+            instagram: form?.instagram || "",
             message: form.message,
           },
           import.meta.env.VITE_APP_EMAILJS_PUBLIC_KEY
@@ -75,12 +57,10 @@ const Contact = () => {
         .then(
           () => {
             setLoading(false);
-            // alert("Thank you. I will get back to you as soon as possible.");
-            notification.success({
-              message: "Contact Info Send",
-              description:
-                "Thank you. I will get back to you as soon as possible.",
-              duration: 2,
+            setNotificationState({
+              title: "Contact Info Send",
+              message: "Thank you. I will get back to you as soon as possible.",
+              status: true,
             });
             setForm({
               name: "",
@@ -90,23 +70,29 @@ const Contact = () => {
           },
           (error) => {
             setLoading(false);
-            console.error(error);
-            notification.error({
-              message: "Failed to Send Contact Info",
-              description: "Ahh, something went wrong. Please try again.",
-              duration: 2,
+            setNotificationState({
+              title: "Failed to Send Contact Info",
+              message: "Ahh, Something went wrong. Please try again.",
+              status: true,
             });
           }
         );
     } else {
-      notification.info({
+      setNotificationState({
+        title: "Something Went Wrong!",
         message:
           "Please the Required * Form Field Before Sending Contact Info!",
-        // description: "Ahh, something went wrong. Please try again.",
-        duration: 2,
+        status: true,
       });
       setLoading(false);
     }
+  };
+  const handleNotificationClose = () => {
+    setNotificationState({
+      title: "",
+      message: "",
+      status: false,
+    });
   };
 
   return (
@@ -129,7 +115,12 @@ const Contact = () => {
               color: "#5095fa",
             }}
           >
-            <Image src={insta_image} alt="" /> @itdevabhay
+            <LazyLoadedImage
+              src={insta_image}
+              alt=""
+              cssClass={"animation_css"}
+            />{" "}
+            @itdevabhay
           </div>{" "}
         </h5>
         <form
@@ -192,19 +183,12 @@ const Contact = () => {
           </button>
         </form>
       </motion.div>
-      {/* 
-      <motion.div
-        variants={slideIn("right", "tween", 0.2, 1)}
-        style={{display: "flex", textAlign: "center"}}
-      >
-        <div
-        style={{display: "flex", alignItems: "center"}}
-        >
-        <img src={insta_image} alt="" style={{width:'70px', height:'70px'}}/>
-        @itdevabhay
-        </div>
-
-      </motion.div> */}
+      <Notification
+        title={notificationState.title}
+        message={notificationState.message}
+        status={notificationState.status}
+        onClose={handleNotificationClose}
+      />
     </div>
   );
 };

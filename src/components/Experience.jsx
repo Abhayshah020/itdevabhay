@@ -11,7 +11,8 @@ import { styles } from "../styles";
 import { experiences } from "../constants";
 import { SectionWrapper } from "../hoc";
 import { textVariant } from "../utils/motion";
-
+import './main.css'
+import LazyLoadedImage from "./LazyLoadImage";
 const ExperienceCard = ({ experience }) => {
   return (
     <VerticalTimelineElement
@@ -24,11 +25,10 @@ const ExperienceCard = ({ experience }) => {
       iconStyle={{ background: experience.iconBg }}
       icon={
         <div className='flex justify-center items-center w-full h-full'>
-          <img
+          <LazyLoadedImage
             src={experience.icon}
             alt={experience.company_name}
-            className='w-[70%] h-[70%] object-contain'
-            style={{borderRadius:'50%'}}
+            cssClass={'exp_card_image_css'}
           />
         </div>
       }

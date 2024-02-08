@@ -1,43 +1,9 @@
 import { motion } from "framer-motion";
 
 import { styles } from "../styles";
-import { ComputersCanvas } from "./canvas";
 import image from "../assets/itdevabhay.jpg";
-import styled from "styled-components";
-import { slideIn } from "../utils/motion";
+import LazyLoadedImage from "./LazyLoadImage";
 
-const Image = styled.img`
-  border-radius: 20% 50% 30% 50%;
-  width: 150px;
-  height: 150px;
-  animation: identifier 10s linear infinite;
-
-  @keyframes identifier {
-    0% {
-      border-radius: 20% 50% 30% 50%;
-    }
-    25% {
-      border-radius: 70% 30% 60% 40%;
-    }
-    50% {
-      border-radius: 30% 70% 50% 70%;
-    }
-    75% {
-      border-radius: 50% 30% 70% 30%;
-    }
-    100% {
-      border-radius: 20% 50% 30% 50%;
-    }
-  }
-  @media screen and (max-width: 750px) {
-    width: 100px;
-    height: 100px;
-  }
-  @media screen and (max-width: 450px) {
-    width: 80px;
-    height: 80px;
-  }
-`;
 
 const Hero = () => {
   return (
@@ -59,7 +25,11 @@ const Hero = () => {
               flexFlow: "wrap",
             }}
           >
-            <Image src={image} alt="" />
+            <LazyLoadedImage
+              src={image}
+              alt=""
+              cssClass={"mian_hero_image_css"}
+            />
             <motion.h1
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -71,7 +41,7 @@ const Hero = () => {
           </div>
           <motion.p
             initial={{ opacity: 0 }}
-            animate={{ opacity: 1}}
+            animate={{ opacity: 1 }}
             transition={{ duration: 0.9, ease: "easeInOut" }}
             className={`${styles.heroSubText} mt-2 tesxt-white-100`}
           >
