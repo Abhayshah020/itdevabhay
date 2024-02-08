@@ -99,7 +99,7 @@ const technologies = [
     icon: mongodb,
   },
   {
-    name: "git",
+    name: "Git",
     icon: git,
   },
 ];

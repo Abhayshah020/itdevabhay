@@ -16,7 +16,7 @@ import "./index.css";
 const LazyLoadedComponent = ({ children }) => {
   const [ref, inView] = useInView({
     triggerOnce: true, // Ensures component is loaded only once when it comes into view
-    threshold: 0.5, // Adjust as needed
+    threshold: 0.2, // Adjust as needed
   });
 
   return <div ref={ref}>{inView && children}</div>;
@@ -33,10 +33,12 @@ const App = () => {
     <BrowserRouter>
       <Suspense fallback={<SuspenseFallback />}>
         <div className="relative z-0 bg-primary" style={{ overflow: "hidden" }}>
-          <div className="bg-hero-pattern bg-cover bg-no-repeat bg-center">
-            <Navbar />
-            <Hero />
-          </div>
+          <LazyLoadedComponent>
+            <div className="bg-hero-pattern bg-cover bg-no-repeat bg-center">
+              <Navbar />
+              <Hero />
+            </div>
+          </LazyLoadedComponent>
           <LazyLoadedComponent>
             <About />
           </LazyLoadedComponent>
@@ -52,7 +54,6 @@ const App = () => {
           <LazyLoadedComponent>
             <StarsCanvas />
           </LazyLoadedComponent>
-
           <div className="relative z-0">
             <LazyLoadedComponent>
               <Contact />
